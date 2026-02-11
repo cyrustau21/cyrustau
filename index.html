@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyrus Tau</title>
+  <style>
+    :root {
+      --primary: #a51c30;
+      --primary-dark: #8a1829;
+      --text: #2d2d2d;
+      --text-light: #555;
+      --bg: #fafafa;
+      --card-bg: #fff;
+      --border: #e0e0e0;
+      --accent: #003262;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', 'Times New Roman', serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    a { color: var(--primary); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--primary-dark); }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255,255,255,0.97);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+
+    nav .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .nav-name {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--text);
+      letter-spacing: 0.5px;
+    }
+
+    nav .nav-links { display: flex; gap: 1.5rem; }
+
+    nav .nav-links a {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      letter-spacing: 0.3px;
+    }
+
+    nav .nav-links a:hover { color: var(--primary); }
+
+    /* Hero */
+    .hero {
+      padding: 8rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .hero .bio {
+      font-size: 1.05rem;
+      color: var(--text);
+      max-width: 700px;
+      line-height: 1.8;
+    }
+
+    .hero .contact-links {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .hero .contact-links a {
+      color: var(--text-light);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+    }
+
+    .hero .contact-links a:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* Sections */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    section h2 {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: var(--text);
+      margin-bottom: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+      display: inline-block;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 1.2rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: var(--text);
+    }
+
+    .card-date {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      white-space: nowrap;
+    }
+
+    .card-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      font-style: italic;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-location {
+      font-size: 0.85rem;
+      color: var(--text-light);
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      margin-bottom: 0.6rem;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      font-size: 0.92rem;
+      color: var(--text);
+      padding: 0.2rem 0 0.2rem 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.75rem;
+      width: 5px;
+      height: 5px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .tag {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.75rem;
+      background: #f0e8ea;
+      color: var(--primary);
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+    }
+
+    /* Publications */
+    .pub-item {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pub-item:last-child { border-bottom: none; }
+
+    .pub-item .pub-title {
+      font-size: 0.95rem;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .pub-item .pub-journal {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--text-light);
+      margin-top: 0.3rem;
+    }
+
+    .pub-item .pub-badge {
+      display: inline-block;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .pub-badge.co-first {
+      background: #e8f0e8;
+      color: #2d6a2d;
+    }
+
+    .pub-badge.accepted {
+      background: #e8ecf0;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      nav .nav-links { gap: 1rem; }
+      nav .nav-links a { font-size: 0.78rem; }
+      .card-header { flex-direction: column; }
+      .card-date { margin-top: 0.2rem; }
+      .hero .contact-links { flex-direction: column; gap: 0.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Cyrus Tau</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#service">Service</a>
+    </div>
+  </div>
+</nav>
+
+<div class="hero" id="about">
+  <h1>Cyrus Tau</h1>
+  <p class="subtitle">PhD Student in Biological and Biomedical Sciences &middot; Harvard University</p>
+  <p class="bio">
+    I am a PhD student at Harvard Medical School in the <a href="https://fishelllab.hms.harvard.edu/" target="_blank">Fishell Lab</a>,
+    studying the autonomous and non-autonomous cues that drive inhibitory interneuron cell type determination. I am
+    supported by the NSF Graduate Research Fellowship. Previously, I studied Bioengineering at UC Berkeley,
+    where I worked on CRISPR-based RNA editing and diagnostics technologies.
+  </p>
+  <div class="contact-links">
+    <a href="mailto:cyrus_tau@g.harvard.edu">cyrus_tau@g.harvard.edu</a>
+    <span style="color: var(--border);">|</span>
+    <span style="color: var(--text-light);">Brookline, MA</span>
+  </div>
+</div>
+
+<section id="education">
+  <h2>Education</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Harvard University</span>
+      <span class="card-date">August 2024 &ndash; present</span>
+    </div>
+    <div class="card-subtitle">PhD in Biological and Biomedical Sciences</div>
+    <div class="card-location">Cambridge, MA &middot; GPA: 3.83</div>
+    <ul>
+      <li>NSF Graduate Research Fellowship (2024&ndash;2026)</li>
+      <li>Teaching Fellow, Genetics 201</li>
+      <li>Thesis Advisor: Gordon Fishell, Ph.D</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">University of California, Berkeley</span>
+      <span class="card-date">August 2020 &ndash; May 2024</span>
+    </div>
+    <div class="card-subtitle">B.S. Bioengineering</div>
+    <div class="card-location">Berkeley, CA &middot; GPA: 3.78</div>
+    <div class="tags">
+      <span class="tag">Regents' and Chancellor's Scholar</span>
+      <span class="tag">Dean's List</span>
+      <span class="tag">Department Chair's Award</span>
+    </div>
+  </div>
+</section>
+
+<section id="research">
+  <h2>Research Experience</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="https://fishelllab.hms.harvard.edu/" target="_blank">Fishell Lab</a> &mdash; Harvard Medical School &amp; Broad Institute</span>
+      <span class="card-date">March 2025 &ndash; present</span>
+    </div>
+    <div class="card-subtitle">Graduate Student</div>
+    <div class="card-location">Cambridge, MA</div>
+    <ul>
+      <li>Co-leading projects investigating autonomous and non-autonomous cues for inhibitory interneuron cell type determination</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="http://datta.hms.harvard.edu/" target="_blank">Datta Lab</a> &mdash; Harvard Medical School</span>
+      <span class="card-date">January 2025 &ndash; March 2025</span>
+    </div>
+    <div class="card-subtitle">Rotation Student</div>
+    <div class="card-location">Boston, MA</div>
+    <ul>
+      <li>Contributed to a project uncovering the spatial code underlying olfactory receptor organization in the nose and brain</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="https://www.zdoulab.org/" target="_blank">Dou Lab</a> &mdash; Massachusetts General Hospital</span>
+      <span class="card-date">October 2024 &ndash; December 2024</span>
+    </div>
+    <div class="card-subtitle">Rotation Student</div>
+    <div class="card-location">Boston, MA</div>
+    <ul>
+      <li>Contributed to a project investigating histone dynamics in senescent cells</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="https://arcinstitute.org/labs/hsulab" target="_blank">Hsu Lab</a> &mdash; University of California, Berkeley</span>
+      <span class="card-date">November 2020 &ndash; August 2024</span>
+    </div>
+    <div class="card-subtitle">Undergraduate Researcher</div>
+    <div class="card-location">Berkeley, CA</div>
+    <ul>
+      <li>Co-led a project using CRISPR RNA targeting proteins to enable RNA writing; co-inventor on associated patent</li>
+      <li>Won award at the Annual Biomedical Research Conference for Minoritized Scientists</li>
+      <li>Performed experiments for a genome-wide CRISPR knockdown and activation screen to identify factors affecting SARS-CoV-2 infection</li>
+      <li>Designed and tested novel amplification technologies for CRISPR-based diagnostics</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">MIT Alumni Angels of Northern California</span>
+      <span class="card-date">January 2019 &ndash; January 2024</span>
+    </div>
+    <div class="card-subtitle">Biotech Technical/Business Consultant</div>
+    <div class="card-location">Palo Alto, CA</div>
+    <ul>
+      <li>Planned and executed tutorial sessions to explain core technologies of presenting biotech startups to potential investors</li>
+      <li>Consulted for companies that have raised over $1M, including BioAmp Diagnostics, Cura Therapeutics, Melio Labs, and CRISP-HR Therapeutics</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><a href="https://med.stanford.edu/content/sm/snyderlab.html/" target="_blank">Snyder Lab</a> &mdash; Stanford University</span>
+      <span class="card-date">October 2019 &ndash; January 2021</span>
+    </div>
+    <div class="card-subtitle">Research Assistant</div>
+    <div class="card-location">Palo Alto, CA</div>
+    <ul>
+      <li>Assisted with executing and analyzing clinical trials studying the biology of depression and evaluating new treatment methods</li>
+      <li>Prepared statistical analyses of trial results for publications and internal use</li>
+    </ul>
+  </div>
+</section>
+
+<section id="publications">
+  <h2>Publications</h2>
+
+  <div class="pub-item">
+    <div class="pub-title">
+      Brann, D. <em>et al.</em> A spatial code governs olfactory receptor choice and aligns sensory maps in the nose and brain.
+      <span class="pub-badge accepted">Accepted</span>
+    </div>
+    <div class="pub-journal"><em>bioRxiv</em> (2026). <em>Cell</em> (accepted).</div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-title">
+      Chandrasakeran, S.*, <strong>Tau, C.*</strong> <em>et al.</em> Rewriting endogenous human transcripts with dual CRISPR-guided 3&prime; trans-splicing.
+      <span class="pub-badge co-first">Co-first author</span>
+    </div>
+    <div class="pub-journal">
+      <em>Cell Systems</em> (2025).
+      <a href="https://doi.org/10.1016/j.cels.2025.101487" target="_blank">doi:10.1016/j.cels.2025.101487</a>
+    </div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-title">
+      Biering, S.B. <em>et al.</em> Genome-wide bidirectional CRISPR screens identify mucins as host factors modulating SARS-CoV-2 infection.
+    </div>
+    <div class="pub-journal"><em>Nature Genetics</em> <strong>54</strong>, 1078&ndash;1089 (2022).</div>
+  </div>
+
+  <div class="pub-item">
+    <div class="pub-title">
+      Ganz, A.B. <em>et al.</em> Effects of an immersive psychosocial training program on depression and well-being: A randomized clinical trial.
+    </div>
+    <div class="pub-journal"><em>Journal of Psychiatric Research</em> <strong>150</strong>, 292&ndash;299 (2022).</div>
+  </div>
+</section>
+
+<section id="service">
+  <h2>Service &amp; Outreach</h2>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Bioengineering High School Competition</span>
+      <span class="card-date">2023 &ndash; 2024</span>
+    </div>
+    <div class="card-subtitle">Mentor</div>
+    <div class="card-location">Berkeley, CA</div>
+    <ul>
+      <li>Mentored teams of high schoolers to develop proposals using machine learning for Parkinson's and allogeneic CAR T-cells</li>
+      <li>Provided technical feedback and advice on pursuing higher education and research in STEM</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title">Biomedical Engineering Society &mdash; UC Berkeley Chapter</span>
+      <span class="card-date">September 2020 &ndash; May 2022</span>
+    </div>
+    <div class="card-subtitle">Academic Co-chair, Academic and Outreach Committee Member</div>
+    <div class="card-location">Berkeley, CA</div>
+    <ul>
+      <li>Presented workshops on research in Bioengineering to disadvantaged middle and high school students</li>
+      <li>Organized a series of computational biology classes with over 30 students</li>
+      <li>Co-led a committee of 20 people; organized coffee chats, course registration workshops, and bi-weekly events</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Cyrus Tau
+</footer>
+
+</body>
+</html>
