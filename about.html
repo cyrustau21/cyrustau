@@ -55,9 +55,6 @@
       letter-spacing: 0.5px;
     }
 
-    nav .nav-name a { color: var(--text); }
-    nav .nav-name a:hover { color: var(--primary); }
-
     nav .nav-links { display: flex; gap: 1.5rem; }
 
     nav .nav-links a {
@@ -69,43 +66,66 @@
 
     nav .nav-links a:hover { color: var(--primary); }
 
-    /* Header */
-    .cv-header {
-      padding: 7rem 2rem 2.5rem;
+    /* Hero */
+    .hero {
+      padding: 8rem 2rem 4rem;
       max-width: 900px;
       margin: 0 auto;
-      border-bottom: 2px solid var(--text);
-    }
-
-    .cv-header h1 {
-      font-size: 2.5rem;
-      font-weight: normal;
-      margin-bottom: 0.3rem;
-    }
-
-    .cv-header .subtitle {
-      font-size: 1.1rem;
-      color: var(--text-light);
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      margin-bottom: 0.8rem;
-    }
-
-    .cv-header .contact-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-size: 0.88rem;
-      color: var(--text-light);
+      gap: 3rem;
+      align-items: flex-start;
     }
 
-    .cv-header .contact-row a {
+    .hero-text { flex: 1; }
+
+    .hero-photo {
+      flex-shrink: 0;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 40%;
+      border: 3px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      margin-top: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: normal;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .hero .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    .hero .bio {
+      font-size: 1.05rem;
+      color: var(--text);
+      max-width: 700px;
+      line-height: 1.8;
+    }
+
+    .hero .contact-links {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 1.5rem;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .hero .contact-links a {
       color: var(--text-light);
       border-bottom: 1px solid var(--border);
-      padding-bottom: 1px;
+      padding-bottom: 2px;
     }
 
-    .cv-header .contact-row a:hover {
+    .hero .contact-links a:hover {
       color: var(--primary);
       border-color: var(--primary);
     }
@@ -114,21 +134,17 @@
     section {
       max-width: 900px;
       margin: 0 auto;
-      padding: 2.5rem 2rem 1rem;
+      padding: 3rem 2rem;
     }
 
     section h2 {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: normal;
       color: var(--text);
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.4rem;
+      margin-bottom: 2rem;
+      padding-bottom: 0.5rem;
       border-bottom: 2px solid var(--primary);
       display: inline-block;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-size: 0.95rem;
     }
 
     /* Cards */
@@ -218,30 +234,6 @@
       border-radius: 3px;
     }
 
-    /* Awards list */
-    .award-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .award-item:last-child { border-bottom: none; }
-
-    .award-name {
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-
-    .award-detail {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      white-space: nowrap;
-      margin-left: 1rem;
-    }
-
     /* Publications */
     .pub-item {
       padding: 1rem 0;
@@ -285,21 +277,9 @@
       color: #5a2d6a;
     }
 
-    /* Patent */
-    .patent-item {
-      padding: 1rem 0;
-    }
-
-    .patent-item .patent-title {
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .patent-item .patent-detail {
-      font-size: 0.85rem;
-      color: var(--text-light);
-      margin-top: 0.3rem;
+    .pub-badge.accepted {
+      background: #e8ecf0;
+      color: var(--accent);
     }
 
     /* Skills */
@@ -371,30 +351,14 @@
 
     /* Responsive */
     @media (max-width: 600px) {
-      .cv-header h1 { font-size: 2rem; }
-      .cv-header .contact-row { flex-direction: column; gap: 0.4rem; }
+      .hero { flex-direction: column-reverse; align-items: center; text-align: center; gap: 1.5rem; }
+      .hero-photo { width: 180px; height: 180px; }
+      .hero h1 { font-size: 2rem; }
       nav .nav-links { gap: 1rem; }
       nav .nav-links a { font-size: 0.78rem; }
       .card-header { flex-direction: column; }
       .card-date { margin-top: 0.2rem; }
-      .award-item { flex-direction: column; }
-      .award-detail { margin-left: 0; margin-top: 0.2rem; }
-    }
-
-    /* Print styles */
-    @media print {
-      body { background: #fff; font-size: 11pt; line-height: 1.5; }
-      nav { display: none; }
-      .cv-header { padding-top: 0; }
-      .card { border: none; padding: 0.8rem 0; box-shadow: none; }
-      .card:hover { box-shadow: none; }
-      .project-card { border: none; padding: 0.8rem 0; box-shadow: none; }
-      .project-card:hover { box-shadow: none; }
-      section { padding: 1.5rem 0 0.5rem; }
-      footer { display: none; }
-      a { color: var(--text); }
-      .pub-badge { border: 1px solid #ccc; }
-      .tag { border: 1px solid #ccc; background: none; }
+      .hero .contact-links { flex-direction: column; gap: 0.5rem; justify-content: center; }
     }
   </style>
 </head>
@@ -402,32 +366,38 @@
 
 <nav>
   <div class="nav-inner">
-    <span class="nav-name"><a href="index.html">Cyrus Tau</a></span>
+    <span class="nav-name">Cyrus Tau</span>
     <div class="nav-links">
-      <a href="about.html">About</a>
+      <a href="#about">About</a>
       <a href="#education">Education</a>
-      <a href="#awards">Awards</a>
       <a href="#research">Research</a>
       <a href="#publications">Publications</a>
-      <a href="#teaching">Teaching</a>
       <a href="#skills">Skills</a>
       <a href="#service">Service</a>
+      <a href="index.html">CV</a>
     </div>
   </div>
 </nav>
 
-<!-- Header -->
-<div class="cv-header">
-  <h1>Cyrus Tau</h1>
-  <p class="subtitle">PhD Student in Biological and Biomedical Sciences &middot; Harvard University</p>
-  <div class="contact-row">
-    <a href="mailto:cyrus_tau@g.harvard.edu">cyrus_tau@g.harvard.edu</a>
-    <span>Brookline, MA</span>
-    <a href="https://cyrustau.github.io">cyrustau.github.io</a>
+<div class="hero" id="about">
+  <div class="hero-text">
+    <h1>Cyrus Tau</h1>
+    <p class="subtitle">PhD Student in Biological and Biomedical Sciences &middot; Harvard University</p>
+    <p class="bio">
+      I am a PhD student at Harvard Medical School in the <a href="https://fishelllab.hms.harvard.edu/" target="_blank">Fishell Lab</a>,
+      studying the autonomous and non-autonomous cues that drive inhibitory interneuron cell type determination. I am
+      supported by the NSF Graduate Research Fellowship. Previously, I studied Bioengineering at UC Berkeley,
+      where I worked on CRISPR-based RNA editing and diagnostics technologies.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:cyrus_tau@g.harvard.edu">cyrus_tau@g.harvard.edu</a>
+      <span style="color: var(--border);">|</span>
+      <span style="color: var(--text-light);">Brookline, MA</span>
+    </div>
   </div>
+  <img src="images/profile.jpg" alt="Cyrus Tau" class="hero-photo">
 </div>
 
-<!-- Education -->
 <section id="education">
   <h2>Education</h2>
 
@@ -438,12 +408,11 @@
     </div>
     <div class="card-subtitle">PhD in Biological and Biomedical Sciences</div>
     <div class="card-location">Cambridge, MA &middot; GPA: 3.83</div>
-    <ul>
-      <li>Thesis Advisor: Gordon Fishell, Ph.D</li>
-      <li>Rotations: Zhixun Dou, Ph.D; Sandeep Robert Datta, MD, Ph.D; Gordon Fishell, Ph.D</li>
-      <li>NSF Graduate Research Fellowship (2024&ndash;2026)</li>
-      <li>Teaching Fellow, Genetics 201</li>
-    </ul>
+    <div class="tags">
+      <span class="tag">NSF Graduate Research Fellowship</span>
+      <span class="tag">Teaching Fellow, Genetics 201</span>
+      <span class="tag">Thesis Advisor: Gordon Fishell, Ph.D</span>
+    </div>
   </div>
 
   <div class="card">
@@ -451,43 +420,16 @@
       <span class="card-title">University of California, Berkeley</span>
       <span class="card-date">August 2020 &ndash; May 2024</span>
     </div>
-    <div class="card-subtitle">B.S. Bioengineering, Minor in Data Science</div>
+    <div class="card-subtitle">B.S. Bioengineering</div>
     <div class="card-location">Berkeley, CA &middot; GPA: 3.78</div>
-    <ul>
-      <li>Regents' and Chancellor's Scholar (highest scholarship awarded by the University)</li>
-      <li>Dean's List, Fall 2022</li>
-      <li>Department Chair's Award, UC Berkeley Bioengineering</li>
-    </ul>
+    <div class="tags">
+      <span class="tag">Regents' and Chancellor's Scholar</span>
+      <span class="tag">Dean's List</span>
+      <span class="tag">Department Chair's Award</span>
+    </div>
   </div>
 </section>
 
-<!-- Awards & Honors -->
-<section id="awards">
-  <h2>Awards &amp; Honors</h2>
-
-  <div class="award-item">
-    <span class="award-name"><strong>NSF Graduate Research Fellowship</strong></span>
-    <span class="award-detail">2024&ndash;2026</span>
-  </div>
-  <div class="award-item">
-    <span class="award-name"><strong>Regents' and Chancellor's Scholar</strong>, University of California, Berkeley</span>
-    <span class="award-detail">2020&ndash;2024</span>
-  </div>
-  <div class="award-item">
-    <span class="award-name"><strong>Department Chair's Award</strong>, UC Berkeley Bioengineering</span>
-    <span class="award-detail">2024</span>
-  </div>
-  <div class="award-item">
-    <span class="award-name"><strong>Dean's List</strong>, University of California, Berkeley</span>
-    <span class="award-detail">Fall 2022</span>
-  </div>
-  <div class="award-item">
-    <span class="award-name"><strong>Oral Presentation Award</strong>, Annual Biomedical Research Conference for Minoritized Scientists</span>
-    <span class="award-detail">2023</span>
-  </div>
-</section>
-
-<!-- Research Experience -->
 <section id="research">
   <h2>Research Experience</h2>
 
@@ -544,6 +486,19 @@
 
   <div class="card">
     <div class="card-header">
+      <span class="card-title">MIT Alumni Angels of Northern California</span>
+      <span class="card-date">January 2019 &ndash; January 2024</span>
+    </div>
+    <div class="card-subtitle">Biotech Technical/Business Consultant</div>
+    <div class="card-location">Palo Alto, CA</div>
+    <ul>
+      <li>Planned and executed tutorial sessions to explain core technologies of presenting biotech startups to potential investors</li>
+      <li>Consulted for companies that have raised over $1M, including BioAmp Diagnostics, Cura Therapeutics, Melio Labs, and CRISP-HR Therapeutics</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
       <span class="card-title"><a href="https://med.stanford.edu/content/sm/snyderlab.html/" target="_blank">Snyder Lab</a> &mdash; Stanford University</span>
       <span class="card-date">October 2019 &ndash; January 2021</span>
     </div>
@@ -554,21 +509,8 @@
       <li>Prepared statistical analyses of trial results for publications and internal use</li>
     </ul>
   </div>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">BioCurious</span>
-      <span class="card-date">January 2018 &ndash; August 2020</span>
-    </div>
-    <div class="card-subtitle">Independent Researcher</div>
-    <div class="card-location">Santa Clara, CA</div>
-    <ul>
-      <li>Designed and led a project to reduce immunogenicity of artificial red blood cells containing hemoglobin</li>
-    </ul>
-  </div>
 </section>
 
-<!-- Publications -->
 <section id="publications">
   <h2>Publications</h2>
 
@@ -614,92 +556,6 @@
   </div>
 </section>
 
-<!-- Patents -->
-<section id="patents">
-  <h2>Patents</h2>
-
-  <div class="patent-item">
-    <div class="patent-title">
-      <a href="https://patents.google.com/patent/US20250283112A1/en" target="_blank"><strong>CRISPR RNA writing via trans-splicing.</strong></a> Co-inventor with P. Hsu, S. Chandrasakeran <em>et al.</em>
-    </div>
-    <div class="patent-detail">US Patent Application US20250283112A1. Related to the RESPLICE system for rewriting endogenous human transcripts using dual CRISPR-guided 3&prime; trans-splicing.</div>
-  </div>
-</section>
-
-<!-- Teaching -->
-<section id="teaching">
-  <h2>Teaching</h2>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">Harvard University &mdash; Genetics 201</span>
-      <span class="card-date">2024 &ndash; present</span>
-    </div>
-    <div class="card-subtitle">Teaching Fellow</div>
-    <div class="card-location">Cambridge, MA</div>
-    <ul>
-      <li>Teaching Fellow for graduate-level genetics course at Harvard University</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">Biomedical Engineering Society &mdash; UC Berkeley Chapter</span>
-      <span class="card-date">2020 &ndash; 2022</span>
-    </div>
-    <div class="card-subtitle">Academic Co-chair</div>
-    <div class="card-location">Berkeley, CA</div>
-    <ul>
-      <li>Organized a series of computational biology classes with over 30 students</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Oral Presentations -->
-<section id="presentations">
-  <h2>Oral Presentations</h2>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">Annual Biomedical Research Conference for Minoritized Scientists (ABRCMS)</span>
-      <span class="card-date">November 2023</span>
-    </div>
-    <div class="card-location">Phoenix, AZ</div>
-    <ul>
-      <li>Tau, C., Chandrasekaran, S., et al. &ldquo;Programmable RNA Writing Using CRISPR Catalyzed Trans-Splicing&rdquo;</li>
-      <li>Won Oral Presentation Award</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Posters -->
-<section id="posters">
-  <h2>Poster Presentations</h2>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">Inside IGI Health Conference</span>
-      <span class="card-date">September 2023</span>
-    </div>
-    <div class="card-location">Berkeley, CA</div>
-    <ul>
-      <li>Tau, C., Chandrasekaran, S., et al. &ldquo;Programmable RNA Writing with CRISPR Cas13 Trans-Splicing&rdquo;</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">UC-wide Bioengineering Conference</span>
-      <span class="card-date">June 2023</span>
-    </div>
-    <div class="card-location">Berkeley, CA</div>
-    <ul>
-      <li>Tau, C., Chandrasekaran, S., et al. &ldquo;Programmable RNA Writing with CRISPR Cas13 Trans-Splicing&rdquo;</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Computational Skills & Projects -->
 <section id="skills">
   <h2>Computational Skills &amp; Projects</h2>
 
@@ -748,7 +604,6 @@
   </div>
 </section>
 
-<!-- Service & Outreach -->
 <section id="service">
   <h2>Service &amp; Outreach</h2>
 
@@ -767,18 +622,6 @@
 
   <div class="card">
     <div class="card-header">
-      <span class="card-title">Splash at Berkeley</span>
-      <span class="card-date">November 2022</span>
-    </div>
-    <div class="card-subtitle">Class Co-teacher</div>
-    <div class="card-location">Berkeley, CA</div>
-    <ul>
-      <li>Co-taught and co-developed curriculum for a class on genomic engineering, focusing on CRISPR-Cas9</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
       <span class="card-title">Biomedical Engineering Society &mdash; UC Berkeley Chapter</span>
       <span class="card-date">September 2020 &ndash; May 2022</span>
     </div>
@@ -788,36 +631,6 @@
       <li>Presented workshops on research in Bioengineering to disadvantaged middle and high school students</li>
       <li>Organized a series of computational biology classes with over 30 students</li>
       <li>Co-led a committee of 20 people; organized coffee chats, course registration workshops, and bi-weekly events</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">BioCurious</span>
-      <span class="card-date">January 2018 &ndash; March 2020</span>
-    </div>
-    <div class="card-subtitle">Volunteer Instructor</div>
-    <div class="card-location">Santa Clara, CA</div>
-    <ul>
-      <li>Created curriculum, taught, recruited, and trained volunteers to teach classes on essential skills such as PCR, protein purification, DNA transformation, gel electrophoresis, and machine learning</li>
-    </ul>
-  </div>
-</section>
-
-<!-- Consulting -->
-<section id="consulting">
-  <h2>Consulting</h2>
-
-  <div class="card">
-    <div class="card-header">
-      <span class="card-title">MIT Alumni Angels of Northern California</span>
-      <span class="card-date">January 2019 &ndash; January 2024</span>
-    </div>
-    <div class="card-subtitle">Biotech Technical/Business Consultant</div>
-    <div class="card-location">Palo Alto, CA</div>
-    <ul>
-      <li>Planned and executed tutorial sessions to explain core technologies of presenting biotech startups to potential investors</li>
-      <li>Consulted for companies that have raised over $1M, including BioAmp Diagnostics, Cura Therapeutics, Melio Labs, and CRISP-HR Therapeutics</li>
     </ul>
   </div>
 </section>
