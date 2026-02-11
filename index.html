@@ -71,6 +71,22 @@
       padding: 8rem 2rem 4rem;
       max-width: 900px;
       margin: 0 auto;
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+
+    .hero-text { flex: 1; }
+
+    .hero-photo {
+      flex-shrink: 0;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     }
 
     .hero h1 {
@@ -329,12 +345,14 @@
 
     /* Responsive */
     @media (max-width: 600px) {
+      .hero { flex-direction: column-reverse; align-items: center; text-align: center; gap: 1.5rem; }
+      .hero-photo { width: 180px; height: 180px; }
       .hero h1 { font-size: 2rem; }
       nav .nav-links { gap: 1rem; }
       nav .nav-links a { font-size: 0.78rem; }
       .card-header { flex-direction: column; }
       .card-date { margin-top: 0.2rem; }
-      .hero .contact-links { flex-direction: column; gap: 0.5rem; }
+      .hero .contact-links { flex-direction: column; gap: 0.5rem; justify-content: center; }
     }
   </style>
 </head>
@@ -355,19 +373,22 @@
 </nav>
 
 <div class="hero" id="about">
-  <h1>Cyrus Tau</h1>
-  <p class="subtitle">PhD Student in Biological and Biomedical Sciences &middot; Harvard University</p>
-  <p class="bio">
-    I am a PhD student at Harvard Medical School in the <a href="https://fishelllab.hms.harvard.edu/" target="_blank">Fishell Lab</a>,
-    studying the autonomous and non-autonomous cues that drive inhibitory interneuron cell type determination. I am
-    supported by the NSF Graduate Research Fellowship. Previously, I studied Bioengineering at UC Berkeley,
-    where I worked on CRISPR-based RNA editing and diagnostics technologies.
-  </p>
-  <div class="contact-links">
-    <a href="mailto:cyrus_tau@g.harvard.edu">cyrus_tau@g.harvard.edu</a>
-    <span style="color: var(--border);">|</span>
-    <span style="color: var(--text-light);">Brookline, MA</span>
+  <div class="hero-text">
+    <h1>Cyrus Tau</h1>
+    <p class="subtitle">PhD Student in Biological and Biomedical Sciences &middot; Harvard University</p>
+    <p class="bio">
+      I am a PhD student at Harvard Medical School in the <a href="https://fishelllab.hms.harvard.edu/" target="_blank">Fishell Lab</a>,
+      studying the autonomous and non-autonomous cues that drive inhibitory interneuron cell type determination. I am
+      supported by the NSF Graduate Research Fellowship. Previously, I studied Bioengineering at UC Berkeley,
+      where I worked on CRISPR-based RNA editing and diagnostics technologies.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:cyrus_tau@g.harvard.edu">cyrus_tau@g.harvard.edu</a>
+      <span style="color: var(--border);">|</span>
+      <span style="color: var(--text-light);">Brookline, MA</span>
+    </div>
   </div>
+  <img src="images/profile.jpg" alt="Cyrus Tau" class="hero-photo">
 </div>
 
 <section id="education">
